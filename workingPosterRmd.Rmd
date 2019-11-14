@@ -1,0 +1,110 @@
+---
+title: Gamma irradiation does not affect the stable isotope signals of fish, crustaceans, submerged vegetation or soils.
+subtitle: 
+author:  Douglas Bearham, Daniel Gorman and Mat Vanderklift
+affiliation: CSIRO Marine and Atmospheric Research. Benthic Ecology Group.
+
+photo: resources/img/whaleshark.JPG
+
+short_title: Stable isotope signals unaffected by gamma irradiation.
+
+output: DSreport::project_summary
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set
+  results = 'asis'
+  echo = FALSE
+  warning = FALSE
+  message = FALSE
+  fig.align = 'center'
+
+#Load libraries
+library(tidyverse)
+library(kableExtra)
+library(readxl)
+```
+
+# Introduction
+I work for CSIRO marine and atmospheric research in the Benthic Ecology team. I'm a former pearl diver and researcher with Paspaley Pearls in Broome WA. My main interests are.... I've never needed much coding before Data School other than loading other peoples scripts and running thenm to generate figures. I have been off work for the last two years recovering from a heart attack. I'm glad to be alive and back at work!
+
+# My Project
+Uncertainty over the effects of sample preparation has been a major concern in the field of stable isotope analysis. This has been magnified given that global collaboration in environmental sciences often requires the importation and treatment of samples when they cross national and international boundaries. Many governments have enacted biosecurity controls involving gamma irradiation to prevent the importation of pests and diseases. The potential consequences of this treatment for the elemental and chemical properties of biological samples has not previous been examined. We prepared a range of common samples from a coastal wetland (fish, invertebrate, vegetation and soils) and tested the effect of gamma irradiation (γ) on the stable isotope signals (δ13C and δ15N) and elemental %C and %N values. Our analysis showed no marked variation between gamma irradiated samples and controls for any of these sample types. Indeed there was a strong correlation (>.999) between treated and control samples for both isotope signals. Our study should dispel concerns about the potential effects of gamma irradiation (for biosecurity purposes) on stable isotope samples and encourage practitioners to uphold the biological integrity of their respective nations by conforming to importation requirements. 
+
+![](resources/img/pearl_diver.JPG){.pull-right width=300px fig.cap="Diver after obtaining samples for the project"}
+
+## Preliminary results
+
+The stable isotope signals (δ13C and δ15N) of the two species of fish and one crustacean were not affected by gamma irradiation (Figure \@ref(fig:standard-plot1). There was also no significant effect of the gamma treatment on different forms of aquatic vegetation (Figure \@ref(fig:standard-plot1). There was no effect of gamma irradiation on estuarine muds, or sand despite a slight enrichment for both irradiated carbon and nitrogen signals. There were strong linear correlations between gamma irradiated samples and controls for both isotopic signals (Table \@ref(tab:mytable), Figure \@ref(fig:standard-plot1), and Figure \@ref(fig:standard-plot2)) .
+
+
+ 
+```{r mytable, out.width='100%',echo=FALSE,warning=FALSE,message=FALSE}
+
+Gamma_data<-read_csv("Gamma_data.csv")
+knitr::kable(head(Gamma_data, n = 3), format = "html", caption = "Example of sample data collected from the stable isotope study.") %>% 
+  kable_styling("striped")
+
+```
+
+**Figures*
+
+``` {r standard-plot1, out.width='60%', fig.align='center', fig.height= 4, fig.width=6, fig.cap="Site compared to the full range of 13C stable isotope ratios obtained from the samples", echo=FALSE,warning=FALSE,message=FALSE}
+
+
+Gamma_data <- read_excel("data/Gamma data.xlsx")
+
+ggplot(Gamma_data, aes(x= type, y = d13C, colour= site)) +
+  labs(
+    title ="",
+    x="Tissue type", y= expression(delta ~ "13c"))+
+  geom_line() +
+  facet_wrap(~site)+
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+```
+
+``` {r standard-plot2, out.width='60%', fig.align='center', fig.height= 4, fig.width=6, fig.cap=" 13C: 15N ratios for each of the sites obtained from the samples.", echo=FALSE, warning=FALSE, message=FALSE}
+
+ggplot(Gamma_data, aes(x= d13C, y = d15N, colour= site)) +
+  labs(
+    title ="",
+    x= expression(delta ~ "13C"), y= expression(delta ~ "15N"))+
+  geom_line() +
+  facet_wrap(~site)+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+  theme_bw()
+
+``` 
+
+These figures show the range of stable isotope values obtained from our samples of various tissues from each of the sites. 
+
+# My Digital Toolbox
+I learned how to use ggplot and Rmarkdown during the course as well as a better understanding of how R works.
+
+
+## Favourite tool (optional)
+
+I like ggplot. I like being to produce interesting colourful plots with almost total control over their features. I'm also looking forward to developing my skills with Rmarkdown further.
+
+
+![](https://raw.githubusercontent.com/tidyverse/ggplot2/master/man/figures/logo.png){.pull-right width=100px}
+
+# My time went ...
+
+My biggest headache was getting Github to function correctly. These problems were solved by getting help from Tracy to ensure that github was properly installed on all of my projects correctly.
+
+
+# Next steps
+
+Like everyone, I hope to take these new skills back to my team and get on with producing some dazzling plots. Ultimately we hope to publish these data so I'm looking forward to contributing some of these plots to the paper. As an aside, I'm also interested in developing my skills with Python and I'm sure that my experiences with R and Rstudio will help with that.
+
+# My Data School Experience
+
+Data school has helped me diversify my skills after a period off work and increase my usefulness to my team. There were many early mornings on the bus and frustrations dealing with Github but overall I enjoyed it.  It was my first course back from rehab and it definately beats lying in a hospital bed!
+
+
+![](resources/img/Splashimage2.jpg){.centre width=500px fig.cap=""}
+
+
+     
